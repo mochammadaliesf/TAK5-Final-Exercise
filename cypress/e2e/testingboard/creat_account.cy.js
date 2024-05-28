@@ -1,13 +1,53 @@
-describe('template spec', () => {
+describe('Customer new account', () => {
   beforeEach(() => {
     cy.visit('https://magento.softwaretestingboard.com/customer/account/create/')
   })
-  it('Create new account - success',() => {
+    it('Create new account - success',() => {
     cy.get('#firstname').type('Budi')
     cy.get('#lastname').type('Hartono')
     cy.get('#email_address').type('budihartono12@gmail.com')
     cy.get('#password').type('Budi123@')
     cy.get('#password-confirmation').type('Budi123@')
     cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
+  })
+    it('without input mandatory fields - Failed',() => {
+    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
+    cy.get('#email_address-error').should('contain.text','This is a required field.')
+  })
+    it('Email invalid - Failed',() => {
+    cy.get('#firstname').type('Budi')
+    cy.get('#lastname').type('Hartono')
+    cy.get('#email_address').type('budihartono')
+    cy.get('#password').type('Budi123@')
+    cy.get('#password-confirmation').type('Budi123@')
+    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
+    cy.get('#email_address-error').should('contain.text','Please enter a valid email address (Ex: johndoe@domain.com).')
+  })
+    it('Email already registered - Failed',() => {
+    cy.get('#firstname').type('Budi')
+    cy.get('#lastname').type('Hartono')
+    cy.get('#email_address').type('budihartono12@gmail.com')
+    cy.get('#password').type('Budi123@')
+    cy.get('#password-confirmation').type('Budi123@')
+    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
+    cy.get('.message-error > div').should('contain.text','There is already an account with this email address. If you are sure that it is your email address, click here to get your password and access your account.')
+  })
+    it(' Input "Password, confirm password" with numeric & special character - Failed',() => {
+    cy.get('#firstname').type('Budi')
+    cy.get('#lastname').type('Hartono')
+    cy.get('#email_address').type('budihartono12@gmail.com')
+    cy.get('#password').type('12345678@')
+    cy.get('#password-confirmation').type('12345678@')
+    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
+    cy.get('#password-error').should('contain.text','Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.')
+  })
+    it('Confirm Password different from password  - Failed',() => {
+    cy.get('#firstname').type('Budi')
+    cy.get('#lastname').type('Hartono')
+    cy.get('#email_address').type('budihartono12@gmail.com')
+    cy.get('#password').type('Budi123@')
+    cy.get('#password-confirmation').type('Budi1234@')
+    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
+    cy.get('#password-confirmation-error').should('contain.html','Please enter the same value again.')
   })
 })
