@@ -1,3 +1,5 @@
+import AddToCart from "../../support/pageObject/AddToCart"
+
 describe('Test Script for Proceed to Checkout Module', () => {
     beforeEach(() => {
         cy.visit('https://magento.softwaretestingboard.com/customer/account/login/')
@@ -13,19 +15,12 @@ describe('Test Script for Proceed to Checkout Module', () => {
         const btnLogin = cy.get('#send2')
         btnLogin.click()
 
-        cy.contains('Welcome, Budi Hartono!').should('be.visible')
+        cy.visit(AddToCart.productUrl)
+        cy.get(AddToCart.btnAddToCart).click()
+
+        // Expected Result
+        cy.contains(AddToCart.addMsg).should('be.visible')
         
-        // Visit the product item
-        cy.visit('https://magento.softwaretestingboard.com/gear.html')
-        const product = cy.contains('Fusion Backpack')
-        product.click()
-
-        // Add the item to shopping cart
-        const btnAddToCart = cy.get('#product-addtocart-button').should('be.visible')
-        btnAddToCart.click()
-
-        // Validation
-        const successMsg = cy.contains('You added Fusion Backpack to your shopping cart.')
     })
 
     // Test Script TC002
@@ -37,17 +32,16 @@ describe('Test Script for Proceed to Checkout Module', () => {
         // Define login button
         const btnLogin = cy.get('#send2')
         btnLogin.click()
-        
-        // Click cart icon
-        const btnCart = cy.get('.counter-number').should('be.visible')
-        btnCart.click()
 
-        const btnRemove = cy.get('.product > .secondary > .action').click()
+        cy.get(AddToCart.btnCart).click()
+        cy.get(AddToCart.btnRemoveItem).click()
+        cy.contains(AddToCart.btnConfirmRemove).should('be.visible').click()
 
-        const btnConfirm = cy.contains('OK').click ()
+        // Expected Result
+        cy.get(AddToCart.cartInfo).should('be.visible')
+        cy.contains(AddToCart.removeMsg).should('be.visible')
 
-        cy.get('.block-minicart').should('be.visible')
-        cy.contains('You have no items in your shopping cart.').should('be.visible')
+
     })
 
     // Test Script TC003
@@ -60,21 +54,17 @@ describe('Test Script for Proceed to Checkout Module', () => {
         const btnLogin = cy.get('#send2')
         btnLogin.click()
 
-        cy.visit('https://magento.softwaretestingboard.com/gear.html')
-        const product = cy.contains('Fusion Backpack')
-        product.click()
+        cy.visit(AddToCart.productUrl)
 
-        cy.get('#qty').then(($input) => {
+        cy.get(AddToCart.qtyField).then(($input) => {
             $input.attr('value', '-5')
             $input.trigger('input')
         })
+        cy.get(AddToCart.btnAddToCart).click()
 
-        // Add the item to shopping cart
-        const btnAddToCart = cy.get('#product-addtocart-button').should('be.visible')
-        btnAddToCart.click()
+        // Expected result
+        cy.contains(AddToCart.invalidQtyMsg).should('be.visible')
 
-        // Validation
-        cy.contains('Please enter a quantity greater than 0.').should('be.visible')
     })
 
     // Test script TC004
@@ -86,18 +76,45 @@ describe('Test Script for Proceed to Checkout Module', () => {
         // Define login button
         const btnLogin = cy.get('#send2')
         btnLogin.click()
-
-        cy.contains('Welcome, Budi Hartono!').should('be.visible')
         
-        // Visit the product item
-        const btnCart = cy.get('.showcart')
-        btnCart.click()
+        // const btnCart = cy.get('.showcart')
+        // btnCart.click()
 
         // Proceed to Checkout
-        cy.get('#top-cart-btn-checkout').should('be.visible').and('be.enabled').click()
+        // cy.get('#top-cart-btn-checkout').should('be.visible').and('be.enabled').click()
 
-        // Validation
-        cy.url().should('include', '/checkout/#shipping')
-        cy.contains('Shipping Address').should('be.visible')
+        // // Validation
+        // cy.url().should('include', '/checkout/#shipping')
+        // cy.contains('Shipping Address').should('be.visible')
+
+        // Open cart
+        cy.get(AddToCart.btnCart2).click()
+
+        // Check if cart is empty or has the desired product
+        cy.get('.ui-id-1').should('be.visible').then($uiId1 => {
+            if ($uiId1.text().includes(AddToCart.removeMsg)) {
+                // Go to product page and add to cart
+                cy.visit(AddToCart.productUrl)
+                cy.get(AddToCart.btnAddToCart).click()
+                cy.wait(10000)
+                // Go back to cart
+                cy.get(AddToCart.btnCart2).click()
+                // Proceed to Checkout
+                cy.get(AddToCart.btnProceedCheckout).click()
+
+                // Expected result
+                cy.url().should('include', AddToCart.urlCheckout)
+                cy.contains(AddToCart.checkoutTitle).should('be.visible')
+            } else {
+                // Open showcart
+                cy.get(AddToCart.btnCart2).click()
+                // Proceed to Checkout
+                cy.get(AddToCart.btnProceedCheckout).click()
+
+                cy.url()
+                    .should('include', AddToCart.urlCheckout)
+                cy.contains(AddToCart.checkoutTitle).should('be.visible')
+            }
+        })
     })
 })
