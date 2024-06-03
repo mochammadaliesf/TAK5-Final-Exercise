@@ -76,45 +76,33 @@ describe('Test Script for Proceed to Checkout Module', () => {
         // Define login button
         const btnLogin = cy.get('#send2')
         btnLogin.click()
-        
-        // const btnCart = cy.get('.showcart')
-        // btnCart.click()
-
-        // Proceed to Checkout
-        // cy.get('#top-cart-btn-checkout').should('be.visible').and('be.enabled').click()
-
-        // // Validation
-        // cy.url().should('include', '/checkout/#shipping')
-        // cy.contains('Shipping Address').should('be.visible')
 
         // Open cart
         cy.get(AddToCart.btnCart2).click()
+        cy.get('.empty.subtitle').should('be.visible').invoke('text').then(text => {
+        if (text.includes('You have no items in your shopping cart.')) {
+            // Go to product page and add to cart
+            cy.visit(AddToCart.productUrl)
+            cy.get(AddToCart.btnAddToCart).click()
+            cy.wait(10000)
+            // Go back to cart
+            cy.get(AddToCart.btnCart2).click()
+            // Proceed to Checkout
+            cy.get(AddToCart.btnProceedCheckout).click()
 
-        // Check if cart is empty or has the desired product
-        cy.get('.ui-id-1').should('be.visible').then($uiId1 => {
-            if ($uiId1.text().includes(AddToCart.removeMsg)) {
-                // Go to product page and add to cart
-                cy.visit(AddToCart.productUrl)
-                cy.get(AddToCart.btnAddToCart).click()
-                cy.wait(10000)
-                // Go back to cart
-                cy.get(AddToCart.btnCart2).click()
-                // Proceed to Checkout
-                cy.get(AddToCart.btnProceedCheckout).click()
+            // Expected result
+            cy.url().should('include', AddToCart.urlCheckout)                
+            cy.contains(AddToCart.checkoutTitle).should('be.visible')
+        } else {
+            console.log('You have no product item in your cart')
+            cy.get(AddToCart.btnCart2).click()
+            // Proceed to Checkout
+            cy.get(AddToCart.btnProceedCheckout).click()
 
-                // Expected result
-                cy.url().should('include', AddToCart.urlCheckout)
-                cy.contains(AddToCart.checkoutTitle).should('be.visible')
-            } else {
-                // Open showcart
-                cy.get(AddToCart.btnCart2).click()
-                // Proceed to Checkout
-                cy.get(AddToCart.btnProceedCheckout).click()
-
-                cy.url()
-                    .should('include', AddToCart.urlCheckout)
-                cy.contains(AddToCart.checkoutTitle).should('be.visible')
-            }
+            cy.url()
+                .should('include', AddToCart.urlCheckout)
+            cy.contains(AddToCart.checkoutTitle).should('be.visible')
+        }
         })
     })
 })
