@@ -17,7 +17,6 @@ class AddToCart {
     invalidQtyMsg = "Please enter a quantity greater than 0."
     urlCheckout = "/checkout/#shipping"
     checkoutTitle = "Shipping Address"
-
 }
 
 export default new AddToCart()

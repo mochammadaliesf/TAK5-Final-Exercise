@@ -8,6 +8,9 @@ describe('Test Script for Proceed to Checkout Module', () => {
     // Test script TC001
     it('Add product item to shopping cart', () => {
 
+        // Calling custom commands - Login
+        cy.login()
+
         cy.get('#email').type('budihartono12@gmail.com')
         cy.get('#pass').type('Budi123@')
         
@@ -25,6 +28,9 @@ describe('Test Script for Proceed to Checkout Module', () => {
 
     // Test Script TC002
     it('Remove item in the Shopping Cart', () => {
+
+        // Calling custom commands - Login
+        cy.login()
 
         cy.get('#email').type('budihartono12@gmail.com')
         cy.get('#pass').type('Budi123@')
@@ -47,6 +53,9 @@ describe('Test Script for Proceed to Checkout Module', () => {
     // Test Script TC003
     it('Update item qty below than 0', () => {
 
+        // Calling custom commands - Login
+        cy.login()
+
         cy.get('#email').type('budihartono12@gmail.com')
         cy.get('#pass').type('Budi123@')
         
@@ -68,19 +77,15 @@ describe('Test Script for Proceed to Checkout Module', () => {
     })
 
     // Test script TC004
-    it.only('Proceed to checkout with 1 item', () => {
+    it('Proceed to checkout with 1 item', () => {
 
-        cy.get('#email').type('budihartono12@gmail.com')
-        cy.get('#pass').type('Budi123@')
-        
-        // Define login button
-        const btnLogin = cy.get('#send2')
-        btnLogin.click()
+        // Calling custom commands - Login
+        cy.login()
 
         // Open cart
         cy.get(AddToCart.btnCart2).click()
         cy.get('.empty.subtitle').should('be.visible').invoke('text').then(text => {
-        if (text.includes('You have no items in your shopping cart.')) {
+        if (text.includes(AddToCart.removeMsg)) {
             // Go to product page and add to cart
             cy.visit(AddToCart.productUrl)
             cy.get(AddToCart.btnAddToCart).click()
