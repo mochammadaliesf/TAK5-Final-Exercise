@@ -1,10 +1,14 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  defaultCommandTimeout: 11000,
+  
   e2e: {
-    setupNodeEvents(on, config) {
+    baseUrl: 'https://magento.softwaretestingboard.com'
+
+    
       // implement node event listeners here
     },
+    setupNodeEvents(on, config) {
   },
+  defaultCommandTimeout: 11000,
 });

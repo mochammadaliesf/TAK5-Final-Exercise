@@ -18,7 +18,7 @@ This final exercise was completed by Team 2, consisting of the following members
 ## Test Scripts Coverage
 
 The test scripts cover the following modules:
-1. **Module Registration** - Tri Putra Saragih
+1. **Module Create an Account** - Tri Putra Saragih
 2. **Module Edit Account** - Fadila Maulidia
 3. **Module Add to Cart** - Mochammad Alie Shodiq F
 4. **Module Checkout** - Mochammad Alie Shodiq F

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-create_account": "npx Cypress run --spec 'cypress/e2e/2-Create-Account/create_account.cy.js' --browser chrome"
   },
   "author": "",
   "license": "ISC",

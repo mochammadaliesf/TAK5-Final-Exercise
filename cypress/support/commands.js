@@ -13,6 +13,12 @@
 // Cypress.Commands.add('login', (email, password) => { ... })
 //
 //
+Cypress.Commands.add('input', (locator,value) => {
+    cy.get(locator).should('be.visible').type(value)
+   
+})
+
+
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
