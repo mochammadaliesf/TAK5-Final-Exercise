@@ -2,12 +2,13 @@ import loginPage from "./pageObject/loginPage"
 import AddToCart from "./pageObject/AddToCart"
 
 // Custom commands login
-Cypress.Commands.add('login', (email, password) => {
-    cy.visit('https://magento.softwaretestingboard.com/customer/account/login/')
-    cy.get(loginPage.emailField).type(loginPage.inputEmail)
-    cy.get(loginPage.passField).type(loginPage.inputPass)
+Cypress.Commands.add("login", () => {
+  cy.fixture("loginCredentials.json").then((credentials) => {
+    cy.get(loginPage.emailField).type(credentials.email)
+    cy.get(loginPage.passField).type(credentials.password)
     cy.get(loginPage.loginButton).click()
   })
+})
 
 // Proceed to checkout
 Cypress.Commands.add('proceedToCheckout', () => {

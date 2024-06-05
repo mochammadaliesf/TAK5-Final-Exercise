@@ -6,17 +6,10 @@ describe('Test Script for Proceed to Checkout Module', () => {
     })
 
     // Test script TC001
-    it('Add product item to shopping cart', () => {
+    it.only('Add product item to shopping cart', () => {
 
         // Calling custom commands - Login
         cy.login()
-
-        cy.get('#email').type('budihartono12@gmail.com')
-        cy.get('#pass').type('Budi123@')
-        
-        // Define login button
-        const btnLogin = cy.get('#send2')
-        btnLogin.click()
 
         cy.visit(AddToCart.productUrl)
         cy.get(AddToCart.btnAddToCart).click()
@@ -31,13 +24,6 @@ describe('Test Script for Proceed to Checkout Module', () => {
 
         // Calling custom commands - Login
         cy.login()
-
-        cy.get('#email').type('budihartono12@gmail.com')
-        cy.get('#pass').type('Budi123@')
-        
-        // Define login button
-        const btnLogin = cy.get('#send2')
-        btnLogin.click()
 
         cy.get(AddToCart.btnCart).click()
         cy.get(AddToCart.btnRemoveItem).click()
@@ -55,13 +41,6 @@ describe('Test Script for Proceed to Checkout Module', () => {
 
         // Calling custom commands - Login
         cy.login()
-
-        cy.get('#email').type('budihartono12@gmail.com')
-        cy.get('#pass').type('Budi123@')
-        
-        // Define login button
-        const btnLogin = cy.get('#send2')
-        btnLogin.click()
 
         cy.visit(AddToCart.productUrl)
 
