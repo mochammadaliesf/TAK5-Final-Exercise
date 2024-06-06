@@ -18,3 +18,11 @@ Cypress.Commands.add('proceedToCheckout', () => {
     // Proceed to Checkout
     cy.get(AddToCart.btnProceedCheckout).click()
 })
+
+// Custom commands change field
+Cypress.Commands.add("FieldInput", (field,x) => {
+    cy.get(field)
+    .should('be.visible')
+    .clear()
+    .type(x)
+})

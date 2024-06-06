@@ -1,0 +1,8 @@
+{
+    "firstName" : "Budi",
+    "lastName" : "Hartono",
+    "valid_email" : "budihartono12@gmail.com",
+    "invalid_email" : "budihartono12gmail.com",
+    "valid_password" : "Budi123@",
+    "invalid_password" : "Budi123@!!"
+}
