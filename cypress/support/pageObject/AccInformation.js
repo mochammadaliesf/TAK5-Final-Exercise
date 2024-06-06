@@ -1,4 +1,7 @@
 class AccInformation{
+    SignIn = '.panel > .header > .authorization-link > a'
+    Arrow = ':nth-child(2) > .customer-welcome > .customer-name > .action'
+    MyAccount = ':nth-child(2) > .customer-welcome > .customer-menu > .header > :nth-child(1) > a'
     editBtn = '.block-dashboard-info > .block-content > .box > .box-actions > .edit > span'
     saveBtn = '#form-validate > .actions-toolbar > div.primary > .action'
     CPassBtn = '.change-password'
