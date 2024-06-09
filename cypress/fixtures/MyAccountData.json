@@ -3,6 +3,7 @@
     "lastName" : "Hartono",
     "valid_email" : "budihartono12@gmail.com",
     "invalid_email" : "budihartono12gmail.com",
+    "unregistered_email" : "budihartono@gmail.com",
     "valid_password" : "Budi123@",
     "invalid_password" : "Budi123@!!"
 }
