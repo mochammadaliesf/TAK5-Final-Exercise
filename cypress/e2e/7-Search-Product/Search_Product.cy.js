@@ -6,7 +6,7 @@ describe('Search_Product', () => {
     })
     it.only('Success search (bag)', () => {
         cy.login()
-        cy.contain(SearchProduct.searchField).type('bag'),
+        cy.get(SearchProduct.searchField).type('bag'),
         cy.get(SearchProduct.searchField).type('{enter}')
     })
 
