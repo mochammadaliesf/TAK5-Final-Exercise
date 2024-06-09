@@ -8,11 +8,21 @@ This project is included several requirements, such as:
 
 --------
 
+## How to run
+If you wish to clone and run this project, follows these steps:
+
+1. Clone the repo
+2. Install cypress into your local project
+3. Run command "npx cypress open"
+
+--------
+
 This final exercise was completed by Team 2, consisting of the following members:
 1. Tri Putra Saragih
 2. Fadila Maulidia
 3. Mochammad Alie Shodiq F
 4. Angeli Rinawati Silaban
+
 --------
 
 ## Test Scripts Coverage
