@@ -12,7 +12,7 @@ This final exercise was completed by Team 2, consisting of the following members
 1. Tri Putra Saragih
 2. Fadila Maulidia
 3. Mochammad Alie Shodiq F
-
+4. Angeli Rinawati Silaban
 --------
 
 ## Test Scripts Coverage
@@ -22,5 +22,6 @@ The test scripts cover the following modules:
 2. **Module Edit Account** - Fadila Maulidia
 3. **Module Add to Cart** - Mochammad Alie Shodiq F
 4. **Module Checkout** - Mochammad Alie Shodiq F
+5. **Module Login** - Angeli Rinawati Silaban
 
 You can refer to the test cases in the [spreadsheet](https://docs.google.com/spreadsheets/d/1J5lHo_W8_MMDhMNZr6wR5BxWuD3wj7k3arXpZP1faSE/edit#gid=0).
