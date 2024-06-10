@@ -28,7 +28,7 @@ Cypress.Commands.add("FieldInput", (field,x) => {
     .type(x)
 })
 
-Cypress.Commands.add('ketik',(firstName, lastName, email, password, confirmPass) => {
+Cypress.Commands.add('input',(firstName, lastName, email, password, confirmPass) => {
   cy.get(createAccount.firstName).should('be.visible').type(firstName)
   cy.get(createAccount.lastName).should('be.visible').type(lastName)
   cy.get(createAccount.emailAddress).should('be.visible').type(email)
@@ -37,6 +37,6 @@ Cypress.Commands.add('ketik',(firstName, lastName, email, password, confirmPass)
   
 })
 
-Cypress.Commands.add('regist',() => {
+Cypress.Commands.add('buttonclick',() => {
   cy.get(createAccount.clickBtn).click()
 })
