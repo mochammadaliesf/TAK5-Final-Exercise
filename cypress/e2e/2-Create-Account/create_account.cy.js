@@ -49,13 +49,10 @@ describe('Customer new account', () => {
     cy.get(createAccount.errormsgTc05).should('contain.text','Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.')
   })
   //TC06
-    it('Confirm Password different from password  - Failed',() => {
-      cy.get(createAccount.firstName).type('Budi')
-      cy.get(createAccount.lastName).type('Hartono')
-      cy.get(createAccount.emailAddress).type('budihartono12@gmail.com')
-      cy.get(createAccount.pass).type('Budi123@')
-      cy.get(createAccount.passConfrim).type('Budi1234@')
-      cy.get(createAccount.clickBtn).click()
+    it.only('Confirm Password different from password  - Failed',() => {
+      cy.ketik('Budi', 'Hartono','budihartono12@gmail.com', 'Budi123@', 'Budi1234@')
+          
+      cy.regist()
     cy.get(createAccount.errormsgTc06).should('contain.html','Please enter the same value again.')
   })
 })

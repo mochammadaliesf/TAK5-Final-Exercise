@@ -1,5 +1,6 @@
 import loginPage from "./pageObject/loginPage"
 import AddToCart from "./pageObject/AddToCart"
+import createAccount from "./pageObject/createAccount"
 
 // Custom commands login
 Cypress.Commands.add("login", () => {
@@ -25,4 +26,17 @@ Cypress.Commands.add("FieldInput", (field,x) => {
     .should('be.visible')
     .clear()
     .type(x)
+})
+
+Cypress.Commands.add('ketik',(firstName, lastName, email, password, confirmPass) => {
+  cy.get(createAccount.firstName).should('be.visible').type(firstName)
+  cy.get(createAccount.lastName).should('be.visible').type(lastName)
+  cy.get(createAccount.emailAddress).should('be.visible').type(email)
+  cy.get(createAccount.pass).should('be.visible').type(password)
+  cy.get(createAccount.passConfrim).should('be.visible').type(confirmPass)
+  
+})
+
+Cypress.Commands.add('regist',() => {
+  cy.get(createAccount.clickBtn).click()
 })
