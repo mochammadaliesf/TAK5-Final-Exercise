@@ -22,6 +22,7 @@ This final exercise was completed by Team 2, consisting of the following members
 2. Fadila Maulidia
 3. Mochammad Alie Shodiq F
 4. Angeli Rinawati Silaban
+5. Ahmadi Zulkarnain Siregar
 
 --------
 
@@ -33,5 +34,6 @@ The test scripts cover the following modules:
 3. **Module Add to Cart** - Mochammad Alie Shodiq F
 4. **Module Checkout** - Mochammad Alie Shodiq F
 5. **Module Login** - Angeli Rinawati Silaban
+6. **Module Search Product** - Ahmadi Zulkarnain Siregar
 
 You can refer to the test cases in the [spreadsheet](https://docs.google.com/spreadsheets/d/1J5lHo_W8_MMDhMNZr6wR5BxWuD3wj7k3arXpZP1faSE/edit#gid=0).
