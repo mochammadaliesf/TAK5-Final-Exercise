@@ -2,6 +2,7 @@ class AddToCart {
     searchField = "#search"
     productName = 'Fusion Backpack'
     productUrl = "https://magento.softwaretestingboard.com/fusion-backpack.html"
+    productUrl1 = "https://magento.softwaretestingboard.com/push-it-messenger-bag.html"
     
     btnAddToCart = "#product-addtocart-button"
     btnCart = ".counter-number"
